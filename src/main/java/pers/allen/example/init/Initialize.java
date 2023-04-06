@@ -1,10 +1,10 @@
 package pers.allen.example.init;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Base64;
 import java.util.List;
@@ -47,7 +47,6 @@ public class Initialize implements ApplicationListener<ContextRefreshedEvent> {
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		ServletContext servletContext = ((WebApplicationContext) event.getApplicationContext()).getServletContext();
 		servletContext.setAttribute("root", servletContext.getContextPath());
-
 		insertDataIntoDB();
 	}
 
@@ -55,7 +54,6 @@ public class Initialize implements ApplicationListener<ContextRefreshedEvent> {
 	 * 讀取resources/init目錄下的資料.json檔案，<br>
 	 * 使用Gson解析成對應的List<Member>，並新增至資料庫。<br>
 	 */
-	@SuppressWarnings("resource")
 	private void insertDataIntoDB() {
 
 		if (mDAO.count() != 0 || mDDAO.count() != 0 || pDAO.count() != 0 || lDAO.count() != 0) {

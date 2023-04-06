@@ -68,7 +68,7 @@ public class Likes {
 
 	@Override
 	public String toString() {
-		return "Likes [lID=" + lID + ", time=" + time + ", member=" + member + ", pet=" + pet + "]";
+		return "Likes [lID=" + lID + ", time=" + time + ", member=" + member.getmID() + ", pet=" + pet.getpID() + "]";
 	}
 
 }

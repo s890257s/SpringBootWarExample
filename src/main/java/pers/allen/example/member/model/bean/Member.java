@@ -37,7 +37,7 @@ public class Member {
 	@Column(nullable = false)
 	private Boolean enabled;
 
-	@OneToOne(mappedBy = "member")
+	@OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
 	private MemberDetail memberDetail;
 
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
@@ -114,7 +114,7 @@ public class Member {
 	@Override
 	public String toString() {
 		return "Member [mID=" + mID + ", email=" + email + ", password=" + password + ", level=" + level + ", enabled="
-				+ enabled + ", memberDetail=" + memberDetail + ", pets=" + pets + "]";
+				+ enabled + ", memberDetail=" + memberDetail + ", pets=" + pets + ", likes=" + likes + "]";
 	}
 
 }

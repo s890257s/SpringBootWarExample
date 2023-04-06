@@ -106,8 +106,8 @@ public class Pet {
 
 	@Override
 	public String toString() {
-		return "Pet [pID=" + pID + ", type=" + type + ", name=" + name + ", age=" + age + ", photo="
-				+ Arrays.toString(photo) + ", member=" + member + "]";
+		return "Pet [pID=" + pID + ", type=" + type + ", name=" + name + ", age=" + age + "]";
 	}
+
 
 }

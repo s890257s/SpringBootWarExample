@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import pers.allen.example.pet.model.bean.Pet;
+import pers.allen.example.pet.model.bean.PetDTO;
 import pers.allen.example.pet.service.PetService;
 
 @Controller
@@ -15,12 +16,15 @@ public class PetController {
 	@Autowired
 	private PetService petService;
 
-	@GetMapping("/getPets")
+	@GetMapping("/GetPets")
 	@ResponseBody
-	public Page<Pet> getPetsByPage(@RequestParam(defaultValue = "1") Integer page,
+	public Page<PetDTO> getPetsByPage(@RequestParam(defaultValue = "1") Integer page,
 			@RequestParam(defaultValue = "10") Integer count) {
 
-		return petService.getPetsByPage(page, count);
+		Page<Pet> petPage = petService.getPetsByPage(page, count);
+		Page<PetDTO> petDTOPage = petService.coverPetToPetDTO(petPage);
+
+		return petDTOPage;
 
 	}
 

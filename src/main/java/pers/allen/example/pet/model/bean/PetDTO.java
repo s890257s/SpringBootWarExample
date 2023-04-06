@@ -1,21 +1,19 @@
 package pers.allen.example.pet.model.bean;
 
-import java.util.List;
+import java.util.Arrays;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import pers.allen.example.member.model.bean.Likes;
 import pers.allen.example.member.model.bean.Member;
 
 public class PetDTO {
+
+	public PetDTO(Pet pet) {
+		this.pID = pet.getpID();
+		this.type = pet.getType();
+		this.name = pet.getName();
+		this.age = pet.getAge();
+		this.photo = pet.getPhoto();
+		this.member = pet.getMember();
+	}
 
 	private Integer pID;
 
@@ -28,5 +26,69 @@ public class PetDTO {
 	private byte[] photo;
 
 	private Member member;
+
+	private Boolean isLiked;
+
+	public Integer getpID() {
+		return pID;
+	}
+
+	public void setpID(Integer pID) {
+		this.pID = pID;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	public byte[] getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
+	}
+
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
+	public Boolean getIsLiked() {
+		return isLiked;
+	}
+
+	public void setIsLiked(Boolean isLiked) {
+		this.isLiked = isLiked;
+	}
+
+	@Override
+	public String toString() {
+		return "PetDTO [pID=" + pID + ", type=" + type + ", name=" + name + ", age=" + age + ", member=" + member
+				+ ", isLiked=" + isLiked + "]";
+	}
 
 }

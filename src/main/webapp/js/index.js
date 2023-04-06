@@ -6,12 +6,13 @@ window.onload = () => {
 	})()
 
 	function getPetList(page = 1, count = 20) {
-		let url = `${root}/getPets?page=${page}&count=${count}`;
+		let url = `${root}/GetPets?page=${page}&count=${count}`;
 
 		fetch(url).then(result => result.json()).then(paginatedPetInfo => {
-			console.log(paginatedPetInfo.content);
+			console.log(paginatedPetInfo);
 			renderPetList(paginatedPetInfo.content);
 		})
+
 
 	}
 
@@ -22,11 +23,12 @@ window.onload = () => {
 			output += `<div class="card shadow-sm">`;
 			output += `<img src="data:image/png;base64,${pet.photo}" class="w-100"`;
 			output += `<div class="card-body">`;
-			output += `<p class="card-text">${pet.name}</p>`;
+			output += `<p class="card-text fs-3">${pet.name}</p>`;
 			output += `<div class="d-flex justify-content-between align-items-center">`;
 			output += `<button type="button" class="btn btn-sm btn-outline-secondary">`;
 			output += `<i class="fa-regular fa-thumbs-up"></i>`;
 			output += `</button>`;
+			output += `<div style="margin-right:5px"><a href="#">${pet.member.memberDetail.name}</a></div>`;
 			output += `</div></div></div></div>`;
 		}
 

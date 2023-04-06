@@ -87,8 +87,7 @@ public class MemberDetail {
 
 	@Override
 	public String toString() {
-		return "MemberDetail [mDID=" + mDID + ", name=" + name + ", age=" + age + ", address=" + address + ", photo="
-				+ photo + ", member=" + member + "]";
+		return "MemberDetail [mDID=" + mDID + ", name=" + name + ", age=" + age + ", address=" + address + "]";
 	}
 
 }
