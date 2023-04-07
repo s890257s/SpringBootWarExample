@@ -109,5 +109,4 @@ public class Pet {
 		return "Pet [pID=" + pID + ", type=" + type + ", name=" + name + ", age=" + age + "]";
 	}
 
-
 }

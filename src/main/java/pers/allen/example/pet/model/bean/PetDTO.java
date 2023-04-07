@@ -11,7 +11,6 @@ public class PetDTO {
 		this.type = pet.getType();
 		this.name = pet.getName();
 		this.age = pet.getAge();
-		this.photo = pet.getPhoto();
 		this.member = pet.getMember();
 	}
 
@@ -22,8 +21,6 @@ public class PetDTO {
 	private String name;
 
 	private Integer age;
-
-	private byte[] photo;
 
 	private Member member;
 
@@ -61,17 +58,10 @@ public class PetDTO {
 		this.age = age;
 	}
 
-	public byte[] getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(byte[] photo) {
-		this.photo = photo;
-	}
-
 	public Member getMember() {
 		return member;
 	}
+
 
 	public void setMember(Member member) {
 		this.member = member;

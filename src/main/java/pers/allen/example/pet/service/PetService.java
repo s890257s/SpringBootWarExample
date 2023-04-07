@@ -1,6 +1,7 @@
 package pers.allen.example.pet.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,13 @@ public class PetService {
 
 		Page<Pet> pagePet = petDAO.findAll(PageRequest.of(page - 1, count));
 
-
 		return pagePet;
+	}
+
+	public byte[] getPetPhotoByID(Integer pID) {
+		Optional<Pet> oPet = petDAO.findById(pID);
+		Pet pet = oPet.orElse(new Pet());
+		return pet.getPhoto();
 	}
 
 	public Page<PetDTO> coverPetToPetDTO(Page<Pet> pagePet) {

@@ -9,7 +9,6 @@ window.onload = () => {
 		let url = `${root}/GetPets?page=${page}&count=${count}`;
 
 		fetch(url).then(result => result.json()).then(paginatedPetInfo => {
-			console.log(paginatedPetInfo);
 			renderPetList(paginatedPetInfo.content);
 		})
 
@@ -21,7 +20,7 @@ window.onload = () => {
 		for (let pet of petList) {
 			output += `<div class="col">`;
 			output += `<div class="card shadow-sm">`;
-			output += `<img src="data:image/png;base64,${pet.photo}" class="w-100"`;
+			output += `<img src="${root}/getPetPhoto?pID=${pet.pID}" class="w-100"`;
 			output += `<div class="card-body">`;
 			output += `<p class="card-text fs-3">${pet.name}</p>`;
 			output += `<div class="d-flex justify-content-between align-items-center">`;

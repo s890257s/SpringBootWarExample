@@ -1,8 +1,13 @@
 package pers.allen.example.pet.controller;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,4 +33,19 @@ public class PetController {
 
 	}
 
+	@GetMapping(value = "/getPetPhoto", produces = "image/*")
+	@ResponseBody
+	public byte[] getPetPhotoByPID(@RequestParam Integer pID) throws IOException {
+
+		byte[] petPhoto = petService.getPetPhotoByID(pID);
+
+		if (petPhoto == null) {
+			BufferedInputStream bis = new BufferedInputStream(
+					new FileInputStream(ResourceUtils.getFile("classpath:\\no_image.png")));
+			petPhoto = bis.readAllBytes();
+			bis.close();
+		}
+
+		return petPhoto;
+	}
 }

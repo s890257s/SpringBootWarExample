@@ -1,31 +1,40 @@
 package pers.allen.example.member.controller;
 
-import java.util.Optional;
-
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import pers.allen.example.exception.LoginFailedException;
 import pers.allen.example.member.model.bean.Member;
-import pers.allen.example.member.model.dao.MemberDAO;
-import pers.allen.example.pet.model.bean.PetDTO;
+import pers.allen.example.member.service.MemberService;
 
 @Controller
 public class MemberController {
 
 	@Autowired
-	private MemberDAO memberDAO;
+	private MemberService memberService;
 
 	@GetMapping(value = "/Login")
-	public String login(HttpSession session) {
+	public String login(@RequestParam String email, @RequestParam String password, HttpSession session,
+			HttpServletResponse response) {
+		try {
+			Member member = memberService.login(email, password);
 
-		Member member = memberDAO.findByEmailAndPassword("Nick@xxmail.com", "1234");
-		System.out.println(member);
-		return "A";
-//		return "redirect:/";
+			session.setAttribute("LoggedInMember", member);
+			response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);  
+
+			response.addHeader("Location", "/");
+			return "redirect:/";
+
+		} catch (LoginFailedException e) {
+			e.printStackTrace();
+
+			return "A";
+		}
 	}
 
 }
