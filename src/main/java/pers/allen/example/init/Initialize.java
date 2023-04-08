@@ -47,6 +47,8 @@ public class Initialize implements ApplicationListener<ContextRefreshedEvent> {
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		ServletContext servletContext = ((WebApplicationContext) event.getApplicationContext()).getServletContext();
 		servletContext.setAttribute("root", servletContext.getContextPath());
+		servletContext.setAttribute("webName", "Doge寵物交流園地");
+	
 		insertDataIntoDB();
 	}
 

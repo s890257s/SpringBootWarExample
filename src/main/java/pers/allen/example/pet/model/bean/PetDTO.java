@@ -1,7 +1,5 @@
 package pers.allen.example.pet.model.bean;
 
-import java.util.Arrays;
-
 import pers.allen.example.member.model.bean.Member;
 
 public class PetDTO {

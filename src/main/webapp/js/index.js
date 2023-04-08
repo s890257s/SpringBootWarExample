@@ -27,7 +27,7 @@ window.onload = () => {
 			output += `<button type="button" class="btn btn-sm btn-outline-secondary">`;
 			output += `<i class="fa-regular fa-thumbs-up"></i>`;
 			output += `</button>`;
-			output += `<div style="margin-right:5px"><a href="#">${pet.member.memberDetail.name}</a></div>`;
+			output += `<div style="margin-right:5px"><a href="${root}/profile?mID=${pet.member.mID}">${pet.member.memberDetail.name}</a></div>`;
 			output += `</div></div></div></div>`;
 		}
 

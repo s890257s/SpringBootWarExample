@@ -35,13 +35,13 @@
 	},
 	{
 		"mID": "2",
-		"email": "Jimmy@xxmail.com",
+		"email": "Amy@xxmail.com",
 		"password": "1234",
 		"enabled": "true",
 		"level": "會員",
 		"memberDetail": {
 			"mDID": "2",
-			"name": "Jimmy",
+			"name": "Amy",
 			"age": "32",
 			"address": "台北市",
 			"photo": "user-type-B-02"
@@ -97,14 +97,14 @@
 	},
 	{
 		"mID": "4",
-		"email": "Eric@xxmail.com",
+		"email": "Elisa@xxmail.com",
 		"password": "1234",
-		"enabled": "false",
+		"enabled": "true",
 		"level": "會員",
 		"memberDetail": {
 			"mDID": "4",
-			"name": "Eric",
-			"age": "28",
+			"name": "Elisa",
+			"age": "25",
 			"address": "高雄市",
 			"photo": "user-type-B-04"
 		},
@@ -125,14 +125,14 @@
 	},
 	{
 		"mID": "5",
-		"email": "Amy@xxmail.com",
+		"email": "Bob@xxmail.com",
 		"password": "1234",
 		"enabled": "true",
 		"level": "會員",
 		"memberDetail": {
 			"mDID": "5",
-			"name": "Amy",
-			"age": "23",
+			"name": "Bob",
+			"age": "55",
 			"address": "桃園市",
 			"photo": "user-type-B-05"
 		},
@@ -159,13 +159,13 @@
 	},
 	{
 		"mID": "6",
-		"email": "Eva@xxmail.com",
+		"email": "John@xxmail.com",
 		"password": "1234",
 		"enabled": "true",
 		"level": "會員",
 		"memberDetail": {
 			"mDID": "6",
-			"name": "Eva",
+			"name": "John",
 			"age": "21",
 			"address": "新北市",
 			"photo": "user-type-B-06"
@@ -216,7 +216,7 @@
 		"memberDetail": {
 			"mDID": "8",
 			"name": "Lydia",
-			"age": "30",
+			"age": "22",
 			"address": "台南市",
 			"photo": "user-type-B-08"
 		},
@@ -237,14 +237,14 @@
 	},
 	{
 		"mID": "9",
-		"email": "Kit@xxmail.com",
+		"email": "Leo@xxmail.com",
 		"password": "1234",
 		"enabled": "true",
 		"level": "會員",
 		"memberDetail": {
 			"mDID": "9",
-			"name": "Kit",
-			"age": "27",
+			"name": "Leo",
+			"age": "35",
 			"address": "台北市",
 			"photo": "user-type-B-09"
 		},
@@ -266,7 +266,7 @@
 		"memberDetail": {
 			"mDID": "10",
 			"name": "Peggie",
-			"age": "24",
+			"age": "28",
 			"address": "台北市",
 			"photo": "user-type-B-10"
 		},
