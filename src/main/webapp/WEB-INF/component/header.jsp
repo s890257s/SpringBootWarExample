@@ -14,7 +14,7 @@
 							<li><a href="${root}/" class="nav-link px-2 text-white">所有寵物</a></li>
 							<c:if test="${LoggedInMember!=null }">
 								<li><a href="${root}/profile" class="nav-link px-2 text-warning">個人資料</a></li>
-								<li><a href="#" class="nav-link px-2 text-warning">新增寵物</a></li>
+								<li><a href="${root}/add_pet" class="nav-link px-2 text-warning">新增寵物</a></li>
 							</c:if>
 						</ul>
 

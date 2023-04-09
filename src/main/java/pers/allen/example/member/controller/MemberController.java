@@ -61,7 +61,8 @@ public class MemberController {
 		}
 
 		if (mID == null) {
-			member = (Member) session.getAttribute("LoggedInMember");
+			Integer loggedInMemberID = ((Member) session.getAttribute("LoggedInMember")).getmID();
+			member = memberService.findMemberByID(loggedInMemberID);
 		}
 
 		model.addAttribute("member", member);

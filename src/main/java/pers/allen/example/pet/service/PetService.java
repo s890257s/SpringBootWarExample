@@ -37,5 +37,12 @@ public class PetService {
 		Page<PetDTO> pagePetDTO = new PageImpl<PetDTO>(petDTOList, pagePet.getPageable(), pagePet.getTotalElements());
 		return pagePetDTO;
 	}
+	
+	public String addPet(Pet p) {
+
+		petDAO.save(p);
+		
+		return "success";
+	}
 
 }

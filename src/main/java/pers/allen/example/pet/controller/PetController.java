@@ -4,14 +4,20 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import pers.allen.example.member.model.bean.Member;
 import pers.allen.example.pet.model.bean.Pet;
 import pers.allen.example.pet.model.bean.PetDTO;
 import pers.allen.example.pet.service.PetService;
@@ -35,7 +41,7 @@ public class PetController {
 
 	@GetMapping(value = "/getPetPhoto", produces = "image/*")
 	@ResponseBody
-	public byte[] getPetPhotoByPID(@RequestParam Integer pID) throws IOException {
+	public byte[] getPetPhotoByPID(@RequestParam(defaultValue = "0") Integer pID) throws IOException {
 
 		byte[] petPhoto = petService.getPetPhotoByID(pID);
 
@@ -47,5 +53,25 @@ public class PetController {
 		}
 
 		return petPhoto;
+	}
+
+	@PostMapping(value = "addPet")
+	@ResponseBody
+	public String addPet(@ModelAttribute Pet p, @RequestParam(required = false) MultipartFile photoContent,
+			HttpSession session) {
+
+		Member m = (Member) session.getAttribute("LoggedInMember");
+		if (photoContent != null) {
+			try {
+				BufferedInputStream bis = new BufferedInputStream(photoContent.getInputStream());
+				p.setPhoto(bis.readAllBytes());
+				bis.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		p.setMember(m);
+		return petService.addPet(p);
 	}
 }
