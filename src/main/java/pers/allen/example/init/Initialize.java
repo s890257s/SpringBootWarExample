@@ -48,7 +48,7 @@ public class Initialize implements ApplicationListener<ContextRefreshedEvent> {
 		ServletContext servletContext = ((WebApplicationContext) event.getApplicationContext()).getServletContext();
 		servletContext.setAttribute("root", servletContext.getContextPath());
 		servletContext.setAttribute("webName", "Doge寵物交流園地");
-	
+
 		insertDataIntoDB();
 	}
 
@@ -108,9 +108,9 @@ public class Initialize implements ApplicationListener<ContextRefreshedEvent> {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				mDAO.save(m);
 			});
 
+			mDAO.saveAll(mList);
 			System.out.println(lList);
 			lList.stream().forEach(l -> {
 				l.getMember().setLikes(lList);

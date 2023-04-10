@@ -1,5 +1,6 @@
 package pers.allen.example.pet.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -10,7 +11,9 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import pers.allen.example.member.model.bean.Likes;
 import pers.allen.example.member.model.bean.Member;
+import pers.allen.example.member.model.dao.LikesDAO;
 import pers.allen.example.member.model.dao.MemberDAO;
 import pers.allen.example.pet.model.bean.Pet;
 import pers.allen.example.pet.model.bean.PetDTO;
@@ -23,6 +26,9 @@ public class PetService {
 
 	@Autowired
 	private MemberDAO memberDAO;
+
+	@Autowired
+	private LikesDAO likesDAO;
 
 	public Page<Pet> getPetsByPage(Integer page, Integer count) {
 
@@ -55,13 +61,34 @@ public class PetService {
 
 		for (Pet p : m.getPets()) {
 			if (p.getpID() == pID) {
-
+				m.getPets().remove(p);
 				petDAO.deleteById(pID);
-			
+
 				return "success";
 			}
 		}
 
 		return "fail";
+	}
+
+	public String likePet(Integer mID, Integer pID) {
+
+		Pet p = petDAO.findById(pID).get();
+		Member m = memberDAO.findById(mID).get();
+
+		for (Likes l : p.getLikes()) {
+			if (l.getMember().getmID() == mID && l.getPet().getpID() == pID) {
+				p.getLikes().remove(l);
+				m.getLikes().remove(l);
+
+				likesDAO.deleteById(l.getlID());
+				return "unLiked";
+			}
+		}
+
+		Likes newLike = new Likes(new Date(), m, p);
+		likesDAO.save(newLike);
+
+		return "liked";
 	}
 }

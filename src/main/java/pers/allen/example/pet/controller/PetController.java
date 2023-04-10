@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import pers.allen.example.member.model.bean.Member;
+import pers.allen.example.member.model.dao.LikesDAO;
 import pers.allen.example.member.service.MemberService;
 import pers.allen.example.pet.model.bean.Pet;
 import pers.allen.example.pet.model.bean.PetDTO;
@@ -95,7 +96,17 @@ public class PetController {
 			m = memberService.findMemberByID(m.getmID());
 			session.setAttribute("LoggedInMember", m);
 		}
-		
+
+		return status;
+	}
+
+	@GetMapping(value = "likePet")
+	@ResponseBody
+	public String likePet(@RequestParam Integer pID, HttpSession session) {
+		Member m = (Member) session.getAttribute("LoggedInMember");
+
+		String status = petService.likePet(m.getmID(), pID);
+
 		return status;
 	}
 }

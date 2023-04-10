@@ -3,6 +3,7 @@ package pers.allen.example.pet.model.bean;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -46,7 +47,7 @@ public class Pet {
 	private Member member;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "pet")
+	@OneToMany(mappedBy = "pet",cascade = CascadeType.ALL)
 	private List<Likes> likes;
 
 	public Integer getpID() {

@@ -5,7 +5,7 @@
 				<div class="container-fulid">
 					<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 						<div class="col-2 ms-2 ">
-							<a href="#" class="navbar-brand d-flex align-items-center"> <img src="${root }/img/doge.png"
+							<a href="${root}" class="navbar-brand d-flex align-items-center"> <img src="${root }/img/doge.png"
 									class="w-15 rounded-circle"> <strong class="ms-2">Doge寵物交流園地</strong>
 							</a>
 						</div>

@@ -11,11 +11,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import pers.allen.example.pet.model.bean.Pet;
 
 @Entity
 @Table(name = "Likes")
 public class Likes {
+
+	public Likes() {
+	}
+
+	public Likes(Date time, Member member, Pet pet) {
+		this.time = time;
+		this.member = member;
+		this.pet = pet;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

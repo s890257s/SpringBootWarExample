@@ -41,11 +41,11 @@ public class Member {
 	@OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
 	private MemberDetail memberDetail;
 
-	@OneToMany(mappedBy = "member", cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 	private List<Pet> pets;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "member")
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 	private List<Likes> likes;
 
 	public Integer getmID() {
