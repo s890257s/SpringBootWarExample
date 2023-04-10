@@ -10,6 +10,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import pers.allen.example.member.model.bean.Member;
+import pers.allen.example.member.model.dao.MemberDAO;
 import pers.allen.example.pet.model.bean.Pet;
 import pers.allen.example.pet.model.bean.PetDTO;
 import pers.allen.example.pet.model.dao.PetDAO;
@@ -18,6 +20,9 @@ import pers.allen.example.pet.model.dao.PetDAO;
 public class PetService {
 	@Autowired
 	private PetDAO petDAO;
+
+	@Autowired
+	private MemberDAO memberDAO;
 
 	public Page<Pet> getPetsByPage(Integer page, Integer count) {
 
@@ -37,12 +42,25 @@ public class PetService {
 		Page<PetDTO> pagePetDTO = new PageImpl<PetDTO>(petDTOList, pagePet.getPageable(), pagePet.getTotalElements());
 		return pagePetDTO;
 	}
-	
+
 	public String addPet(Pet p) {
 
 		petDAO.save(p);
-		
+
 		return "success";
 	}
 
+	public String deletePet(Integer mID, Integer pID) {
+		Member m = memberDAO.findById(mID).get();
+
+		for (Pet p : m.getPets()) {
+			if (p.getpID() == pID) {
+				
+				petDAO.deleteById(pID);
+				return "success";
+			}
+		}
+
+		return "fail";
+	}
 }

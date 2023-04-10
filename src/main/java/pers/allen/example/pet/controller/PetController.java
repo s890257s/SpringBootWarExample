@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import pers.allen.example.member.model.bean.Member;
+import pers.allen.example.member.model.dao.MemberDAO;
+import pers.allen.example.member.service.MemberService;
 import pers.allen.example.pet.model.bean.Pet;
 import pers.allen.example.pet.model.bean.PetDTO;
 import pers.allen.example.pet.service.PetService;
@@ -26,6 +28,9 @@ import pers.allen.example.pet.service.PetService;
 public class PetController {
 	@Autowired
 	private PetService petService;
+
+	@Autowired
+	private MemberService memberService;
 
 	@GetMapping("/GetPets")
 	@ResponseBody
@@ -73,5 +78,19 @@ public class PetController {
 
 		p.setMember(m);
 		return petService.addPet(p);
+	}
+
+	@PostMapping(value = "deletePet")
+	@ResponseBody
+	public String deletePet(@RequestParam Integer pID, HttpSession session) {
+		Member m = (Member) session.getAttribute("LoggedInMember");
+
+		String status = petService.deletePet(m.getmID(), pID);
+
+		m = memberService.findMemberByID(m.getmID());
+
+		session.setAttribute("LoggedInMember", m);
+
+		return status;
 	}
 }
