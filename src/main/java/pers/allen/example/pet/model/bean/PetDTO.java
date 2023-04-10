@@ -1,5 +1,8 @@
 package pers.allen.example.pet.model.bean;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import pers.allen.example.member.model.bean.Member;
 
 public class PetDTO {
@@ -10,6 +13,8 @@ public class PetDTO {
 		this.name = pet.getName();
 		this.age = pet.getAge();
 		this.member = pet.getMember();
+
+		this.likedByMemberIds = pet.getLikes().stream().map(l -> l.getMember().getmID()).collect(Collectors.toList());
 	}
 
 	private Integer pID;
@@ -22,7 +27,7 @@ public class PetDTO {
 
 	private Member member;
 
-	private Boolean isLiked;
+	private List<Integer> likedByMemberIds;
 
 	public Integer getpID() {
 		return pID;
@@ -60,23 +65,22 @@ public class PetDTO {
 		return member;
 	}
 
-
 	public void setMember(Member member) {
 		this.member = member;
 	}
 
-	public Boolean getIsLiked() {
-		return isLiked;
+	public List<Integer> getLikedByMemberIds() {
+		return likedByMemberIds;
 	}
 
-	public void setIsLiked(Boolean isLiked) {
-		this.isLiked = isLiked;
+	public void setLikedByMemberIds(List<Integer> likedByMemberIds) {
+		this.likedByMemberIds = likedByMemberIds;
 	}
 
 	@Override
 	public String toString() {
 		return "PetDTO [pID=" + pID + ", type=" + type + ", name=" + name + ", age=" + age + ", member=" + member
-				+ ", isLiked=" + isLiked + "]";
+				+ ", likedByMemberIds=" + likedByMemberIds + "]";
 	}
 
 }

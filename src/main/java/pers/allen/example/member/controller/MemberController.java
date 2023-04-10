@@ -69,4 +69,18 @@ public class MemberController {
 
 		return "profile";
 	}
+
+	@GetMapping("/GetLoggedInMemberID")
+	@ResponseBody
+	public Integer getLoggedInMemberID(HttpSession session) {
+
+		Member m = (Member) session.getAttribute("LoggedInMember");
+
+		if (m == null) {
+			return null;
+		}
+
+		return m.getmID();
+
+	}
 }

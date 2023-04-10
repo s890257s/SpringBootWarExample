@@ -42,7 +42,7 @@ public class Pet {
 
 	@JsonIgnoreProperties({ "pets" })
 	@JoinColumn(name = "f_mID", referencedColumnName = "mID")
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	private Member member;
 
 	@JsonIgnore

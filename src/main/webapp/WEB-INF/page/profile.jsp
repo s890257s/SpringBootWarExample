@@ -99,7 +99,7 @@
 										<div class="card mb-4 mb-md-0">
 											<div class="card-body text-center position-relative">
 												<i
-													class="fa-solid fa-xmark fa-beat fa-2xl position-absolute xmark xmar4k-hide"></i>
+													class="fa-solid fa-xmark fa-beat fa-2xl position-absolute xmark xmark-hide"></i>
 												<img src="${root}/getPetPhoto?pID=${p.pID}" class="w-100 petPhoto"
 													pID="${p.pID}">
 												<p class="card-text fs-3">${p.name }</p>
@@ -129,13 +129,16 @@
 			})
 
 			$(".xmark").click(function () {
+				if (window.confirm("確定要刪除嗎?") == false) { return };
+
 				fetch("${root}/deletePet?pID=" + $(this).next().attr("pID"), { method: "POST" }).then(rs => rs.text()).then(status => {
-				console.log(status)
 					if (status == "success") {
+						alert("刪除成功");
 						$(this).parent().parent().parent().remove();
 					}
 					if (status == "fail") {
 						alert("刪除失敗");
+						this.classList.add("xmark-hide");
 					}
 				})
 			})

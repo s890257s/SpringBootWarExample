@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import pers.allen.example.member.model.bean.Member;
-import pers.allen.example.member.model.dao.MemberDAO;
 import pers.allen.example.member.service.MemberService;
 import pers.allen.example.pet.model.bean.Pet;
 import pers.allen.example.pet.model.bean.PetDTO;
@@ -38,6 +37,7 @@ public class PetController {
 			@RequestParam(defaultValue = "10") Integer count) {
 
 		Page<Pet> petPage = petService.getPetsByPage(page, count);
+
 		Page<PetDTO> petDTOPage = petService.coverPetToPetDTO(petPage);
 
 		return petDTOPage;
@@ -82,15 +82,20 @@ public class PetController {
 
 	@PostMapping(value = "deletePet")
 	@ResponseBody
-	public String deletePet(@RequestParam Integer pID, HttpSession session) {
+	public String deletePet(@RequestParam(defaultValue = "0") Integer pID, HttpSession session) {
 		Member m = (Member) session.getAttribute("LoggedInMember");
+
+		if (m == null) {
+			return "fail";
+		}
 
 		String status = petService.deletePet(m.getmID(), pID);
 
-		m = memberService.findMemberByID(m.getmID());
-
-		session.setAttribute("LoggedInMember", m);
-
+		if (status.equals("success")) {
+			m = memberService.findMemberByID(m.getmID());
+			session.setAttribute("LoggedInMember", m);
+		}
+		
 		return status;
 	}
 }

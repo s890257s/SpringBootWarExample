@@ -87,7 +87,7 @@
 				pi.value = "1234";
 			})
 			document.getElementById("notEnabledBTN").addEventListener("click", function () {
-				ei.value = "Nick@xxmail.com";
+				ei.value = "peggie@xxmail.com";
 				pi.value = "1234";
 			})
 			// 快速登入

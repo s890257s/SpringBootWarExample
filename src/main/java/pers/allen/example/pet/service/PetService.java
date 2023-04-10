@@ -55,8 +55,9 @@ public class PetService {
 
 		for (Pet p : m.getPets()) {
 			if (p.getpID() == pID) {
-				
+
 				petDAO.deleteById(pID);
+			
 				return "success";
 			}
 		}

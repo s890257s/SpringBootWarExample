@@ -65,7 +65,7 @@
 		"mID": "3",
 		"email": "Nick@xxmail.com",
 		"password": "1234",
-		"enabled": "false",
+		"enabled": "true",
 		"level": "會員",
 		"memberDetail": {
 			"mDID": "3",
@@ -254,6 +254,12 @@
 				"type": "cat",
 				"name": "麻糬",
 				"age": "5"
+			},
+			{
+				"pID": "20",
+				"type": "dog",
+				"name": "阿毛",
+				"age": "2"
 			}
 		]
 	},
@@ -261,7 +267,7 @@
 		"mID": "10",
 		"email": "Peggie@xxmail.com",
 		"password": "1234",
-		"enabled": "true",
+		"enabled": "false",
 		"level": "會員",
 		"memberDetail": {
 			"mDID": "10",
@@ -270,13 +276,6 @@
 			"address": "台北市",
 			"photo": "user-type-B-10"
 		},
-		"pets": [
-			{
-				"pID": "20",
-				"type": "dog",
-				"name": "阿毛",
-				"age": "2"
-			}
-		]
+		"pets": []
 	}
 ]
