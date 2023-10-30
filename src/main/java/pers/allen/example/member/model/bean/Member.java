@@ -30,7 +30,7 @@ public class Member {
 	@Column(nullable = false, length = 50)
 	private String password;
 
-	@Column(nullable = false, columnDefinition = "nvarchar(10)")
+	@Column(nullable = false, columnDefinition = "varchar(10)")
 	private String level;
 
 	@Column(nullable = false)

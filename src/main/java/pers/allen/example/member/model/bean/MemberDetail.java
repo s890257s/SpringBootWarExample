@@ -26,10 +26,10 @@ public class MemberDetail {
 	@Column
 	private Integer age;
 
-	@Column(columnDefinition = "nvarchar(50)")
+	@Column(columnDefinition = "varchar(50)")
 	private String address;
 
-	@Column(columnDefinition = "nvarchar(MAX)")
+	@Column(columnDefinition = "MEDIUMTEXT")
 	private String photo;
 
 	@JsonIgnore

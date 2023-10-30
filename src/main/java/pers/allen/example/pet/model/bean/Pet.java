@@ -1,12 +1,10 @@
 package pers.allen.example.pet.model.bean;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -29,16 +26,16 @@ public class Pet {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer pID;
 
-	@Column(nullable = false, columnDefinition = "nvarchar(50)")
+	@Column(nullable = false)
 	private String type;
 
-	@Column(nullable = false, columnDefinition = "nvarchar(50)")
+	@Column(nullable = false)
 	private String name;
 
 	@Column
 	private Integer age;
 
-	@Column(columnDefinition = "varbinary(MAX)")
+	@Column(columnDefinition = "mediumblob")
 	private byte[] photo;
 
 	@JsonIgnoreProperties({ "pets" })
